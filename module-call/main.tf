@@ -4,12 +4,12 @@ module "s3" {
   secret_key = var.secret_key
 }
 
-# variable "access_key" {
-#   type        = string
-#   description = "access"
-# }
+variable "access_key" {
+  type        = string
+  description = "access"
+}
 
-# variable "secret_key" {
-#   type        = string
-#   description = "password"
-#}
+variable "secret_key" {
+  type        = string
+  description = "password"
+}
