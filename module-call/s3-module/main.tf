@@ -37,3 +37,7 @@ resource "random_integer" "s3" {
     bucket_owner = var.name
   }
 }
+
+provider "aws" {
+  region     = var.region
+}
