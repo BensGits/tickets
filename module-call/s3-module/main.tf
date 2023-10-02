@@ -38,6 +38,3 @@ resource "random_integer" "s3" {
   }
 }
 
-provider "aws" {
-  region     = var.region
-}
