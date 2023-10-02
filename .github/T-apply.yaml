@@ -1,0 +1,109 @@
+$ terraform apply --auto-approve
+
+Terraform used the selected providers to generate the following execution  
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_kms_key.mykey will be created
+  + resource "aws_kms_key" "mykey" {
+      + arn                                = (known after apply)
+      + bypass_policy_lockout_safety_check = false
+      + customer_master_key_spec           = "SYMMETRIC_DEFAULT"
+      + deletion_window_in_days            = 30
+      + description                        = "This key is used to encrypt bucket objects"
+      + enable_key_rotation                = false
+      + id                                 = (known after apply)
+      + is_enabled                         = true
+      + key_id                             = (known after apply)
+      + key_usage                          = "ENCRYPT_DECRYPT"
+      + multi_region                       = (known after apply)
+      + policy                             = (known after apply)
+      + tags_all                           = (known after apply)
+    }
+
+  # aws_s3_bucket.backend[0] will be created
+  + resource "aws_s3_bucket" "backend" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = (known after apply)
+      + bucket_domain_name          = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Environment" = "Dev"
+          + "Name"        = "My bucket"
+        }
+      + tags_all                    = {
+          + "Environment" = "Dev"
+          + "Name"        = "My bucket"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.backend will be created      
+  + resource "aws_s3_bucket_server_side_encryption_configuration" "backend" {       
+      + bucket = (known after apply)
+      + id     = (known after apply)
+
+      + rule {
+          + apply_server_side_encryption_by_default {
+              + kms_master_key_id = (known after apply)
+              + sse_algorithm     = "aws:kms"
+            }
+        }
+    }
+
+  # aws_s3_bucket_versioning.versioning_example will be created
+  + resource "aws_s3_bucket_versioning" "versioning_example" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+
+      + versioning_configuration {
+          + mfa_delete = (known after apply)
+          + status     = "Enabled"
+        }
+    }
+
+  # random_integer.s3 will be created
+  + resource "random_integer" "s3" {
+      + id      = (known after apply)
+      + keepers = {
+          + "bucket_owner" = "UGO"
+        }
+      + max     = 100
+      + min     = 1
+      + result  = (known after apply)
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + s3-name = (known after apply)
+random_integer.s3: Creating...
+random_integer.s3: Creation complete after 0s [id=1]
+aws_kms_key.mykey: Creating...
+aws_s3_bucket.backend[0]: Creating...
+aws_kms_key.mykey: Creation complete after 1s [id=7b139326-5d12-4d85-971e-037a8242c412]
+aws_s3_bucket.backend[0]: Creation complete after 4s [id=bootcamp32-ugo-1]
+aws_s3_bucket_versioning.versioning_example: Creating...
+aws_s3_bucket_server_side_encryption_configuration.backend: Creating...
+aws_s3_bucket_server_side_encryption_configuration.backend: Creation complete after 
+1s [id=bootcamp32-ugo-1]
+aws_s3_bucket_versioning.versioning_example: Creation complete after 2s [id=bootcamp32-ugo-1]
+
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+s3-name = "bootcamp32-ugo-1"
