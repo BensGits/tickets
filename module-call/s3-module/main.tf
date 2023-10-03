@@ -38,10 +38,10 @@ resource "random_integer" "s3" {
   }
 }
 
-#5. Bucket versioning
-resource "aws_s3_bucket_versioning" "versioning_example" {
-  bucket = aws_s3_bucket.backend.id
-  versioning_configuration {
-    status = var.versioning
-  }
-}
+# #5. Bucket versioning
+# resource "aws_s3_bucket_versioning" "versioning_example" {
+#   bucket = aws_s3_bucket.backend.id
+#   versioning_configuration {
+#     status = var.versioning
+#   }
+# }

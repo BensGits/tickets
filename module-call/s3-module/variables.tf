@@ -3,10 +3,10 @@ variable "name" {
   default = "UGO"
 }
 
-variable "versioning" {
-  type    = string
-  default = "Enabled"
-}
+# variable "versioning" {
+#   type    = string
+#   default = "Enabled"
+# }
 
 # variable "acl" {
 #   type    = string
