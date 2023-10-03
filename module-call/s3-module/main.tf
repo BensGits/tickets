@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "ugobacks3" {
 
 #2. KMS encryption
 resource "aws_s3_bucket_server_side_encryption_configuration" "ugobacks3" {
-  bucket = aws_s3_bucket.ugobacks3[0].id
+  bucket = aws_s3_bucket.ugobacks3.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -38,3 +38,10 @@ resource "random_integer" "s3" {
   }
 }
 
+#5. Bucket versioning
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.backend.id
+  versioning_configuration {
+    status = var.versioning
+  }
+}
