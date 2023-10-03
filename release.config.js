@@ -1,5 +1,5 @@
 module.export = {
-branches: "cdl-3.1",
+branches: "master",
 repositoryUrl: "https://github.com/BensGits/tickets.git",
 plugins: [
 "@semantic-release/commit-analyzer",
