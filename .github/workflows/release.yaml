@@ -20,7 +20,7 @@ jobs:
       - name: Release
         run: semantic-release
         env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 # This yaml did kept failing so I replace it with above
