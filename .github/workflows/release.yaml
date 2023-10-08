@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: npm semantic-release --global
+        run: npm install semantic-release --global
         # Replace 'semantic-release' with the actual package name if needed
       - name: Release
         run: semantic-release
