@@ -65,3 +65,28 @@ jobs:
   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
   run: terraform apply -auto-approve
 ```
+#################################################################
+# back to step 5, the code below worked for me
+name: Release Workflow
+on: workflow_dispatch
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npx semantic-release --global
+        # Replace 'semantic-release' with the actual package name if needed
+      - name: Release
+        run: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
